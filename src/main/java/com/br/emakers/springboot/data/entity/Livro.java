@@ -1,12 +1,16 @@
 package com.br.emakers.springboot.data.entity;
 
+import com.br.emakers.springboot.data.dto.request.LivroRequestDTO;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "Livro")
 
 public class Livro {
@@ -26,7 +30,13 @@ public class Livro {
 
     @ManyToOne()
     @JoinColumn(name = "idCategory")
-    private Category category;
+    private Pessoa pessoa;
 
-
+    @Builder
+    public Livro(LivroRequestDTO livroRequestDTO) {
+        this.nome = livroRequestDTO.nome();
+        this.pessoa = livroRequestDTO.pessoa();
+        this.data_lancamento = livroRequestDTO.data_lancamento();
+        this.autor = livroRequestDTO.autor();
+    }
 }
