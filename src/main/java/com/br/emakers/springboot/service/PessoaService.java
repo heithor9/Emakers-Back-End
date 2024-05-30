@@ -34,6 +34,7 @@ public class PessoaService {
     public PessoaResponseDTO updatePessoa(Long idPessoa, PessoaRequestDTO pessoaRequestDTO){
         Pessoa pessoa = getPessoaEntityById(idPessoa);
         pessoa.setNome(pessoaRequestDTO.nome());
+        pessoa.setCEP(pessoaRequestDTO.CEP());
         pessoaRepository.save(pessoa);
         return new PessoaResponseDTO(pessoa);
 

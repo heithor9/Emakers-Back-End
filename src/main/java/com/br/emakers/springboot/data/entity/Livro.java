@@ -29,7 +29,7 @@ public class Livro {
     private int data_lancamento;
 
     @ManyToOne()
-    @JoinColumn(name = "idCategory")
+    @JoinColumn(name = "idLivro")
     private Pessoa pessoa;
 
     @Builder

@@ -5,6 +5,7 @@ import com.br.emakers.springboot.data.dto.request.PessoaRequestDTO;
 import com.br.emakers.springboot.data.dto.response.PessoaResponseDTO;
 import com.br.emakers.springboot.data.entity.Pessoa;
 import com.br.emakers.springboot.service.PessoaService;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,12 +32,12 @@ public class PessoaController {
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity<PessoaResponseDTO> createPessoa(@RequestBody PessoaRequestDTO pessoaRequestDTO) {
+    public ResponseEntity<PessoaResponseDTO> createPessoa(@Valid @RequestBody PessoaRequestDTO pessoaRequestDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.createPessoa(pessoaRequestDTO));
     }
 
     @PutMapping(value = "/update/{idPessoa}")
-    public ResponseEntity<PessoaResponseDTO> updatePessoa(@PathVariable Long idPessoa, @RequestBody PessoaRequestDTO pessoaRequestDTO) {
+    public ResponseEntity<PessoaResponseDTO> updatePessoa(@PathVariable Long idPessoa, @Valid @RequestBody PessoaRequestDTO pessoaRequestDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.updatePessoa(idPessoa, pessoaRequestDTO));
     }
 
